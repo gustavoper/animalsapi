@@ -1,0 +1,180 @@
+{
+	"info": {
+		"_postman_id": "06186589-8fa1-4e94-9e59-898fdc4f3c77",
+		"name": "Animals API (LOCAL)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"",
+							"postman.setEnvironmentVariable(\"AuthToken\", null);",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    postman.setEnvironmentVariable(\"AuthToken\", jsonData.token);",
+							"    postman.setEnvironmentVariable(\"TokenAcesso\", jsonData.token);",
+							"});",
+							"",
+							"",
+							"//pm.collectionVariables.set(\"AuthToken\",  jsonData.token);",
+							"",
+							"",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"admin\", \n    \"password\": \"admin@123\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}login",
+					"host": [
+						"{{url}}login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Check Auth",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{AuthToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}checkauth",
+					"host": [
+						"{{url}}checkauth"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Random Dog",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{AuthToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}dog/random",
+					"host": [
+						"{{url}}dog"
+					],
+					"path": [
+						"random"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Favoritar Doguinho",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{AuthToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"image_id\" : \"52bBXd2dO\",\n    \"sub_id\" : \"AnimalsAPI_112021\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}dog/favourite",
+					"host": [
+						"{{url}}dog"
+					],
+					"path": [
+						"favourite"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Lista Doguinhos Favoritos",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{AuthToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}dog/favourite",
+					"host": [
+						"{{url}}dog"
+					],
+					"path": [
+						"favourite"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

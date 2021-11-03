@@ -1,0 +1,119 @@
+{
+	"info": {
+		"_postman_id": "a3a9903a-40b8-472b-a5ec-c6495e7a7b74",
+		"name": "The Dog API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get Random Dog",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.thedogapi.com/v1/images/search",
+					"protocol": "https",
+					"host": [
+						"api",
+						"thedogapi",
+						"com"
+					],
+					"path": [
+						"v1",
+						"images",
+						"search"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Favourite Doguinho",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "key",
+							"value": "x-api-key",
+							"type": "string"
+						},
+						{
+							"key": "value",
+							"value": "{{x-api-key}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"image_id\" : \"52bBXd2dO\",\n    \"sub_id\" : \"AnimalsAPI_112021\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.thedogapi.com/v1/favourites",
+					"protocol": "https",
+					"host": [
+						"api",
+						"thedogapi",
+						"com"
+					],
+					"path": [
+						"v1",
+						"favourites"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Todos Doguinhos Favoritos",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "key",
+							"value": "x-api-key",
+							"type": "string"
+						},
+						{
+							"key": "value",
+							"value": "{{x-api-key}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.thedogapi.com/v1/favourites",
+					"protocol": "https",
+					"host": [
+						"api",
+						"thedogapi",
+						"com"
+					],
+					"path": [
+						"v1",
+						"favourites"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
