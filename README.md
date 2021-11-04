@@ -1,23 +1,30 @@
- 
+## Animals API - A API de API dos animais
+
+
+Esta aplicação é um grande WIP para aprendermos um pouco mais sobre APIs. 
+
+Muito está sendo construindo, ainda. Portanto se você achar um bug, fique a vontade para abrir um MR.
+
+Este projeto **ainda** usa componentes do .NET Core 3.1.
+
+### Como executar
+
+Muito simples: 
+
+1 - Clone o repo;
+2 - `dotnet run`; 
+3 - Na pasta `postman`, temos as collections para testes.
+
+
+
+### Comandos que você talvez precise rodar
+
+```
  dotnet new webapi -o AnimalsApi
  dotnet add package Microsoft.AspNetCore.Authentication -v 3.1.20
  dotnet add package Microsoft.AspNetCore.Authentication.JwtBearer -v 3.1.20
+```
 
+### Notas importantes
 
-
-
-
-Thanks for signing up, welcome to the API!
-
-Your API key:
-
-
-Use it as the 'x-api-key' header when making any request to the API, or by adding as a query string parameter e.g. 'api_key=c0d3715a-a5f7-4f02-b1ac-70e96a3afe6b' More details on authentication.
-
-API Documentation | Postman Collection | Public Forum
-
-Join our new API Slack Group - That API Slack Group
-
-All the best, Aden & That API Team.
-
-p.s. We build APIs for companies & good causes. If you're interested find out more at https://thatapicompany.com
+A `x-api-key` para a The Dog API é de exemplo. Você precisará de uma key válida para prosseguir.
