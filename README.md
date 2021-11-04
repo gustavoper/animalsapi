@@ -18,7 +18,6 @@ Muito simples:
 3 - Na pasta `postman`, temos as collections para testes.
 
 
-
 ### Comandos que você talvez precise rodar
 
 ```
