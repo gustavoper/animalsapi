@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace AnimalsApi.Models
 {
 
-    public class Image
+    public class BreedImage
     {
         [JsonProperty("id")]
         public string Id { get; set; }
@@ -30,10 +30,16 @@ namespace AnimalsApi.Models
         public string SubId { get; set; }
 
         [JsonProperty("created_at")]
-        public DateTime CreatedAt { get; set; }
+        public string CreatedAt { get; set; }
+
+        [JsonProperty("url")]
+        public string ImageUrl { get; set; }
+
 
         [JsonProperty("image")]
-        public Image Image { get; set; }
+        public BreedImage BreedImage { get; set; }
+
+
     }
 
 

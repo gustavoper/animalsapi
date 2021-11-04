@@ -27,11 +27,8 @@ namespace AnimalsApi.Controllers
     public class DogsApiController : Controller
     {
 
-        HttpClient _httpClient = new HttpClient();
-
         public DogsApiController()
         {
-            _httpClient.DefaultRequestHeaders.Add("x-api-key", Settings.DogsApiKey);
         }
 
 
@@ -77,27 +74,26 @@ namespace AnimalsApi.Controllers
         {
             try {
                 string url = Settings.DogsApiUrl+ "/images/search";  
-                using var httpResponse = await _httpClient.GetAsync(url, HttpCompletionOption.ResponseHeadersRead);
                 
+                var httpClient = new HttpClient();
+                httpClient.DefaultRequestHeaders.Add("x-api-key", Settings.DogsApiKey);
+                using var httpResponse = await httpClient.GetAsync(url);
+
                 if (httpResponse.Content !is object && httpResponse.Content.Headers.ContentType.MediaType != "application/json") {
                     return NotFound("Doguinho Not Found =(");
                 }
                 var json = await httpResponse.Content.ReadAsStringAsync();
-
+                
                 if (!httpResponse.IsSuccessStatusCode) {
                     return BadRequest(json);
                 }
 
                 List<Dog> DogsList = new List<Dog>();
                 //var json = await httpResponse.Content.ReadAsStringAsync();
+                
                 var result = JsonConvert.DeserializeObject<List<Dog>>(json);
-                Dog dogresult = new Dog();
-                foreach (var dog in result) {
-                    dogresult.Id = dog.Id;
-                    dogresult.Image.Url = dog.Image.Url;
-
-                }
-                return Ok(dogresult);
+                
+                return Ok(result);
             }
             catch (Exception ex) {
                 Console.WriteLine(ex.Message);
@@ -152,13 +148,21 @@ namespace AnimalsApi.Controllers
         public async Task<ActionResult<dynamic>>  GetAllFavourites()
         {
             try {
-                string url = Settings.DogsApiUrl+"/favourites";  
-                using var httpResponse = await _httpClient.GetAsync(url, HttpCompletionOption.ResponseHeadersRead);
-                httpResponse.EnsureSuccessStatusCode();
+                string url = Settings.DogsApiUrl+"/favourites"; 
+                
+                var httpClient = new HttpClient();
+                httpClient.DefaultRequestHeaders.Add("x-api-key", Settings.DogsApiKey); 
+                using var httpResponse = await httpClient.GetAsync(url, HttpCompletionOption.ResponseHeadersRead);
+                //httpResponse.EnsureSuccessStatusCode();
                 if (httpResponse.Content !is object && httpResponse.Content.Headers.ContentType.MediaType != "application/json") {
                     return NotFound("Nenhum doguinho");
                 }
                 string json =  await httpResponse.Content.ReadAsStringAsync();
+
+                  if (!httpResponse.IsSuccessStatusCode) {
+                    return BadRequest(json);
+                }
+
                 return JsonConvert.DeserializeObject<List<Dog>>(json);   
             }
             catch (Exception ex) {
