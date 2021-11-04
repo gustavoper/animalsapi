@@ -12,7 +12,9 @@ Este projeto **ainda** usa componentes do .NET Core 3.1.
 Muito simples: 
 
 1 - Clone o repo;
+
 2 - `dotnet run`; 
+
 3 - Na pasta `postman`, temos as collections para testes.
 
 
